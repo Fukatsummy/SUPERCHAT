@@ -16,7 +16,7 @@ namespace SUPERCHAT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Telespamm());
+            Application.Run(new Сhatterbox());
         }
     }
 }

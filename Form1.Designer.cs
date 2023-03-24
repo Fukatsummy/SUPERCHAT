@@ -49,7 +49,6 @@
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(254, 20);
             this.userNameTextBox.TabIndex = 0;
-            this.userNameTextBox.TextChanged += new System.EventHandler(this.UserNameTextBox_TextChanged);
             // 
             // label1
             // 
@@ -62,7 +61,6 @@
             this.label1.Size = new System.Drawing.Size(132, 24);
             this.label1.TabIndex = 1;
             this.label1.Text = "Введите имя:";
-            this.label1.Click += new System.EventHandler(this.Label1_Click);
             // 
             // groupBox1
             // 
@@ -82,7 +80,6 @@
             this.groupBox1.Size = new System.Drawing.Size(600, 109);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Enter += new System.EventHandler(this.GroupBox1_Enter);
             // 
             // LogoutButton
             // 
@@ -116,7 +113,6 @@
             this.chatTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.chatTextBox.Size = new System.Drawing.Size(600, 200);
             this.chatTextBox.TabIndex = 3;
-            this.chatTextBox.TextChanged += new System.EventHandler(this.ChatTextBox_TextChanged);
             // 
             // messageTextBox
             // 
@@ -129,7 +125,6 @@
             this.messageTextBox.Name = "messageTextBox";
             this.messageTextBox.Size = new System.Drawing.Size(427, 64);
             this.messageTextBox.TabIndex = 4;
-            this.messageTextBox.TextChanged += new System.EventHandler(this.MessageTextBox_TextChanged);
             // 
             // sendButton
             // 
@@ -173,7 +168,6 @@
             this.Name = "Сhatterbox";
             this.Text = "Сhatterbox";
             this.TransparencyKey = System.Drawing.Color.Transparent;
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
