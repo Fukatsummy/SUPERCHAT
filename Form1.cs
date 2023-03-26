@@ -18,7 +18,7 @@ namespace SUPERCHAT
         bool alive = false;
         UdpClient client;
         int temp = 0;
-        const int LOCALPORT = 10101; // порт отправки
+        const int LOCALPORT = 10113; // порт отправки
         const int REMOTEPORT = 8001; // порт приема
         const int TTL = 20;
         const string HOST = "235.5.5.25"; // хост для групповой рассылки
@@ -69,7 +69,7 @@ namespace SUPERCHAT
         {
             if (userNameTextBox.Text == "")
             {
-                MessageBox.Show("Вы не ввели имя");
+                MessageBox.Show("Введите имя");
             }
             else
             {
@@ -85,13 +85,14 @@ namespace SUPERCHAT
                     Task receiveTask = new Task(ReceiveMessages);
                     receiveTask.Start();
                     // отправляем первое сообщение о входе нового пользователя
-                    string message = userName + " вошел в чат. Поприветствуйте его!";
+                    string message = userName + " вошел в чат. Добро пожаловать";
                     byte[] data = Encoding.Unicode.GetBytes(message);
                     client.Send(data, data.Length, HOST, REMOTEPORT);
                     client.Send(data, data.Length, HOST, LOCALPORT);
                     LoginButton.Enabled = false;
                     LogoutButton.Enabled = true;
                     sendButton.Enabled = true;
+
                 }
                 catch (Exception ex)
                 {
@@ -107,7 +108,7 @@ namespace SUPERCHAT
 
        private void ExitChat()
         {
-            string message = userName + " покинул наш мир";
+            string message = userName + " покинул наш мир.";
             byte[] data = Encoding.Unicode.GetBytes(message);
             client.Send(data, data.Length, HOST, REMOTEPORT);
             client.Send(data, data.Length, HOST, LOCALPORT);
