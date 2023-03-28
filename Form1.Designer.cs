@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Сhatterbox));
             this.userNameTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@
             this.messageTextBox = new System.Windows.Forms.TextBox();
             this.sendButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -46,7 +48,7 @@
             this.userNameTextBox.BackColor = System.Drawing.Color.DarkGray;
             this.userNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.userNameTextBox.Location = new System.Drawing.Point(192, 54);
-            this.userNameTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.userNameTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.userNameTextBox.Name = "userNameTextBox";
             this.userNameTextBox.Size = new System.Drawing.Size(338, 22);
             this.userNameTextBox.TabIndex = 0;
@@ -78,9 +80,9 @@
             this.groupBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.groupBox1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(800, 134);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
@@ -88,7 +90,7 @@
             // LogoutButton
             // 
             this.LogoutButton.Location = new System.Drawing.Point(653, 60);
-            this.LogoutButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LogoutButton.Margin = new System.Windows.Forms.Padding(4);
             this.LogoutButton.Name = "LogoutButton";
             this.LogoutButton.Size = new System.Drawing.Size(100, 28);
             this.LogoutButton.TabIndex = 3;
@@ -99,7 +101,7 @@
             // LoginButton
             // 
             this.LoginButton.Location = new System.Drawing.Point(653, 23);
-            this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LoginButton.Margin = new System.Windows.Forms.Padding(4);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(100, 28);
             this.LoginButton.TabIndex = 2;
@@ -113,7 +115,7 @@
             this.chatTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.chatTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.chatTextBox.Location = new System.Drawing.Point(16, 194);
-            this.chatTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chatTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.chatTextBox.Multiline = true;
             this.chatTextBox.Name = "chatTextBox";
             this.chatTextBox.ReadOnly = true;
@@ -128,7 +130,7 @@
             this.messageTextBox.BackColor = System.Drawing.Color.SteelBlue;
             this.messageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.messageTextBox.Location = new System.Drawing.Point(16, 449);
-            this.messageTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.messageTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.messageTextBox.Multiline = true;
             this.messageTextBox.Name = "messageTextBox";
             this.messageTextBox.Size = new System.Drawing.Size(569, 79);
@@ -152,13 +154,17 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(16, 159);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(108, 28);
             this.button1.TabIndex = 6;
             this.button1.Text = "Очистить чат";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.Button1_Click_1);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Сhatterbox
             // 
@@ -172,12 +178,14 @@
             this.Controls.Add(this.messageTextBox);
             this.Controls.Add(this.chatTextBox);
             this.Controls.Add(this.groupBox1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Сhatterbox";
             this.Text = "Сhatterbox";
             this.TransparencyKey = System.Drawing.Color.Transparent;
+            this.Load += new System.EventHandler(this.Сhatterbox_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -196,6 +204,7 @@
         private System.Windows.Forms.TextBox messageTextBox;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

@@ -10,6 +10,11 @@ using System.Threading;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+//using Timer = System.Threading.Timer;
+using Timer = System.Windows.Forms.Timer;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
+using System.Timers;
 
 namespace SUPERCHAT
 {
@@ -24,9 +29,10 @@ namespace SUPERCHAT
         const string HOST = "235.5.5.25"; // хост для групповой рассылки
         IPAddress groupAddress; // адрес для групповой рассылк
         static IPAddress address = IPAddress.Parse("26.45.37.25");
-        //TcpListener ServerListener = new TcpListener(address, LOCALPORT);
-        //TcpClient clientSocket = default(TcpClient);
+        Stopwatch stopwatch = new Stopwatch();//создаем экземпляр класса
         
+        //stopwatch.Start();
+
         string userName; // имя пользователя в чате
         public Сhatterbox()
         {
@@ -38,33 +44,33 @@ namespace SUPERCHAT
             groupAddress = IPAddress.Parse(HOST);
         }
         private void ReceiveMessages()
-         {
-             alive = true;
-             try
-             {
-                 while (alive)
-                 {
-                     IPEndPoint remoteIp = null;
-                     byte[] data = client.Receive(ref remoteIp);
-                     string message = Encoding.Unicode.GetString(data);
-                     this.Invoke(new MethodInvoker(() =>
-                     {
-                         string time = DateTime.Now.ToShortTimeString();//отображает текущее время
-                         chatTextBox.Text = time + " " + message + "\r\n" + chatTextBox.Text;
-                     }));
-                 }
-             }
-             catch (ObjectDisposedException)
-             {
-                 if (!alive)
-                     return;
-                 throw;
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show(ex.Message);
-             }
-    }
+        {
+            alive = true;
+            try
+            {
+                while (alive)
+                {
+                    IPEndPoint remoteIp = null;
+                    byte[] data = client.Receive(ref remoteIp);
+                    string message = Encoding.Unicode.GetString(data);
+                    this.Invoke(new MethodInvoker(() =>
+                    {
+                        string time = DateTime.Now.ToShortTimeString();//отображает текущее время
+                        chatTextBox.Text = time + " " + message + "\r\n" + chatTextBox.Text;
+                    }));
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                if (!alive)
+                    return;
+                throw;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void Button1_Click(object sender, EventArgs e)
         {
             if (userNameTextBox.Text == "")
@@ -92,7 +98,7 @@ namespace SUPERCHAT
                     LoginButton.Enabled = false;
                     LogoutButton.Enabled = true;
                     sendButton.Enabled = true;
-
+                    stopwatch.Start();
                 }
                 catch (Exception ex)
                 {
@@ -100,13 +106,12 @@ namespace SUPERCHAT
                 }
             }
         }
-
         private void LogoutButton_Click(object sender, EventArgs e)
         {
             ExitChat();
         }
 
-       private void ExitChat()
+        private void ExitChat()
         {
             string message = userName + " покинул наш мир.";
             byte[] data = Encoding.Unicode.GetBytes(message);
@@ -139,6 +144,7 @@ namespace SUPERCHAT
         }
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            stopwatch.Stop();
             if (alive)
                 ExitChat();
         }
@@ -146,7 +152,26 @@ namespace SUPERCHAT
         private void Button1_Click_1(object sender, EventArgs e)
         {
             chatTextBox.Text = "";
-            
+
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            TimeSpan timeSpan = stopwatch.Elapsed;
+            chatTextBox.Text = string.Format("{0:00}:{1:00}:{2:00}",timeSpan.Hours, timeSpan.Minutes,timeSpan.Seconds);
+        }
+
+        private void Сhatterbox_Load(object sender, EventArgs e)
+        {
+            Timer timer1 = new Timer();
+            timer1.Interval = 120000;
+            timer1.Tick += new EventHandler(timer1_Tick);
+            timer1.Start();
         }
     }
+   /* public class Stopwatch : Form
+    {
+        Stopwatch stopwatch = new Stopwatch();//создаем экземпляр класса
+        stopwatch.Start();
+     };*/
 }
