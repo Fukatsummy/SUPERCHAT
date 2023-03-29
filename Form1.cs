@@ -113,7 +113,7 @@ namespace SUPERCHAT
 
         private void ExitChat()
         {
-            string message = userName + " покинул наш мир.";
+            string message = userName + " покинул чат.";
             byte[] data = Encoding.Unicode.GetBytes(message);
             client.Send(data, data.Length, HOST, REMOTEPORT);
             client.Send(data, data.Length, HOST, LOCALPORT);
@@ -169,9 +169,4 @@ namespace SUPERCHAT
             timer1.Start();
         }
     }
-   /* public class Stopwatch : Form
-    {
-        Stopwatch stopwatch = new Stopwatch();//создаем экземпляр класса
-        stopwatch.Start();
-     };*/
 }

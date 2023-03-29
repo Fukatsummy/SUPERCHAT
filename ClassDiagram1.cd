@@ -8,9 +8,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SUPERCHAT.Сhatterbox">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="0.5" Y="0.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAABBggIICAAABAAAICAgEACBCIIQASEACQIBAEAAAQ=</HashCode>
+      <HashCode>AEQBBggIICAAABAAAICAgEACJCIIYASEACQIBAEAAAQ=</HashCode>
       <FileName>Form1.cs</FileName>
     </TypeIdentifier>
   </Class>
